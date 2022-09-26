@@ -37,14 +37,14 @@ spec:
         # available resources for your Pod, and also so that your 
         # Pod does not use resources that other Pods needs
         # -----------------------------------------------------------*
-        # resources:
-        #   limits:
-        #     memory: 64Mi
-        #     cpu: "250m"
-        #   requests:
-        #     memory: 32Mi
-        #     cpu: "200m"
-        # specify the container port
+        resources:
+          limits:
+            memory: 64Mi
+            cpu: "250m"
+          requests:
+            memory: 32Mi
+            cpu: "200m"
+        #specify the container port
         ports:
         - containerPort: 8501
 
@@ -74,8 +74,8 @@ spec:
   # e.g -- 
   # kubectl port-forward service/nodejs-demo-app-entrypoint 3000:443
   # -----------------------------------------------------------*
-  type: NodePort
-  #type: LoadBalancer
+  #type: NodePort
+  type: LoadBalancer
   selector:
     app: devops-interview-app
   # The range of valid ports in kubernetes is 30000-32767
@@ -88,6 +88,6 @@ spec:
     - name: https
       protocol: TCP
       port: 443            # this is service port 443
-      targetPort: 8501
-      # nodePort: 30004      # this is for when using type: NodePort
+      #targetPort: 8501
+      nodePort: 30004      # this is for when using type: NodePort
   
